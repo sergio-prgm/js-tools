@@ -36,7 +36,7 @@ export default class ToDoJS {
 
       divNuevoItem.className = 'btn-container';
       spanNuevoItem.textContent = NEW_ITEM.value;
-      spanNuevoItem.className = 'item-container';
+      spanNuevoItem.className = 'text-xl';
       nuevoItemValue.className = 'list-do-item';
 
       btnItem(divNuevoItem);
