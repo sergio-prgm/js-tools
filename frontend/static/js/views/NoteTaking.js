@@ -8,7 +8,7 @@ export default class extends AbstractView {
 
   async getHtml() {
     return `
-    <h1>Note App</h1>
+    <h1 class="text-3xl font-bold">Note App</h1>
     <section id="input-section">
       <form id="form">
         <label for="note-title">Título de la nota:</label>
@@ -17,7 +17,7 @@ export default class extends AbstractView {
         <button type="submit" class="btn-note">Agregar</button>
       </form>
     </section>
-    <section id="note-section" class="note-section">
+    <section id="note-section" class="note-section mt-6 grid grid-cols-2 gap-4">
   
     </section>
     <script src="jS/app.js"></script>
