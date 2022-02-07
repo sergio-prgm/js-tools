@@ -2,6 +2,8 @@ import Dashboard from "./views/Dashboard.js"
 import DashJS from "./scripts/DashJS.js"
 import ToDo from "./views/ToDo.js"
 import ToDoJS from "./scripts/ToDoJS.js"
+import NoteTaking from "./views/NoteTaking.js"
+import NoteJS from "./scripts/NoteJS.js"
 
 //  Use the history API to not load each route every time it is requested. Works in conjunction with Event listener on the links (l. 39)
 const navigateTo = url => {
@@ -13,7 +15,7 @@ const router = async () => {
   const routes = [
     { path: "/", view: Dashboard, script: DashJS },
     { path: "/ToDo", view: ToDo, script: ToDoJS },
-    // {path: "/settings", view: () => console.log("Viewing Settings")}
+    { path: "/NoteTaker", view: NoteTaking, script: NoteJS}
   ]
 
   const potentialMatches = routes.map(route => { 
