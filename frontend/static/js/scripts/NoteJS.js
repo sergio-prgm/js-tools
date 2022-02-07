@@ -19,7 +19,7 @@ let span = document.getElementsByClassName("close")[0];
 //  Genera la tarjeta donde va la nota y el modal. Este último empieza con display: none desde la clase de CSS. 
 function creaNota() {
     let newArticle = $C('article')
-    let title = $C('h3')
+    let title = $C('h5')
     let content = $C('p')
     let btnDel = $C('button')
 
@@ -36,14 +36,18 @@ function creaNota() {
     let btnEdit = $C('button')
     
     title.innerText = NOTE_TITLE.value;
+    title.className = 'text-gray-900 text-xl leading-tight font-medium mb-2'
+
     content.innerText = NOTE_CONTENT.value;
-    newArticle.className = 'grid-article';
+    content.className = 'text-gray-700 text-base mb-4'
+    newArticle.className = 'flex flex-col flex-wrap grid-article block p-6 rounded-lg shadow-lg bg-white max-w-sm hover:cursor-pointer';
     newArticle.id = title.innerText;
     btnDel.innerText = 'Borrar';
     btnDel.id = 'btnDel';
+    btnDel.className = 'self-end px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out'
 
-    modal.className = 'modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto'
-    modalDialog.className = 'modal-dialog relative w-auto pointer-events-none'
+    modal.className = 'modal fixed flex jsutify-center top-0 left-0 hidden bg-gray-700 bg-opacity-50 w-full h-full outline-none overflow-x-hidden overflow-y-auto px-6 py-20'
+    modalDialog.className = 'modal-dialog mx-auto max-w-xl pointer-events-none'
     modalContent.className = 'modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current'
 
     modalHeader.className = 'modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md'
@@ -153,4 +157,5 @@ window.addEventListener('click', (event) => {
 }
 
 //  ✅ Estado actual => hacer que funcione el editar texto (l. 129)
+//  Estado actual => estilar la parte del input y el botón editar del modal y el textarea del modal
 //  Falta => estilar las notas creadas, añadir espacio al modal, darle un poco de estilo en general a la página
