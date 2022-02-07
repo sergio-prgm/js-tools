@@ -1,38 +1,44 @@
 export default class ToDoJS {
   async getJS() {
         //  VARIABLES
-    const LIST_DO = document.querySelector('ul#list-do');
-    const LIST_X = document.querySelector('ul#list-X');
-    const NEW_ITEM = document.getElementById('item');
-    const SECTION_LIST = document.getElementById('section-list');
+
+    const $ = select => document.querySelector(select)
+    const $C = select => document.createElement(select)
+
+    const LIST_DO = $('ul#list-do');
+    const LIST_X = $('ul#list-X');
+    const NEW_ITEM = $('#item');
+    const SECTION_LIST = $('#section-list');
+    const FORM = $('form')
 
     //  Botones de la sección input
-    const BTN_OK = document.querySelector('i#btn-OK');
-    const BTN_X = document.querySelector('i#btn-X');
+    const BTN_OK = $('button#btn-OK');
+    const BTN_X = $('i#btn-X');
 
 
     //  FUNCIONES
     //  crean los botones de los elementos
     function btnItem(li) {
-      let btnUp = document.createElement('i');
+      let btnUp = $C('i');
       btnUp.className = "fa-solid fa-angle-up";
       li.appendChild(btnUp);
 
-      let btnDown = document.createElement('i');
+      let btnDown = $C('i');
       btnDown.className = "fa-solid fa-angle-down"
       li.append(btnDown);
 
-      let btnDel = document.createElement('i');
+      let btnDel = $C('i');
       btnDel.className = "fa-solid fa-trash";
       li.append(btnDel);
     }
 
     //  ADDEVENT
     //  crea un nuevo elemento en la lista
-    BTN_OK.addEventListener('click', () => {
-      let nuevoItemValue = document.createElement('li');
-      let divNuevoItem = document.createElement('div');
-      let spanNuevoItem = document.createElement('span');
+    FORM.addEventListener('submit', (e) => {
+      e.preventDefault()
+      let nuevoItemValue = $C('li');
+      let divNuevoItem = $C('div');
+      let spanNuevoItem = $C('span');
 
       divNuevoItem.className = 'btn-container';
       spanNuevoItem.textContent = NEW_ITEM.value;

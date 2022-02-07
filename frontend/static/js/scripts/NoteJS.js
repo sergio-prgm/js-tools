@@ -2,10 +2,15 @@ export default class NoteJS {
   async getJS() {
 
     //  VARIABLES 
-const NOTE_TITLE = document.querySelector("input#note-title");
-const NOTE_CONTENT = document.querySelector("textarea#note-content");
-const BTN_OK = document.querySelector("button.btn-note");
-const NOTE_SECTION = document.querySelector("section#note-section");
+
+const $ = select => document.querySelector(select)
+const $C = select => document.createElement(select)
+
+const NOTE_TITLE = $("input#note-title");
+const NOTE_CONTENT = $("textarea#note-content");
+const BTN_OK = $("button.btn-note");
+const NOTE_SECTION = $("section#note-section");
+const FORM = $('form')
 
 let span = document.getElementsByClassName("close")[0];
 
@@ -13,22 +18,22 @@ let span = document.getElementsByClassName("close")[0];
 //  FUNCIONES
 //  Genera la tarjeta donde va la nota y el modal. Este último empieza con display: none desde la clase de CSS. 
 function creaNota() {
-    let newArticle = document.createElement('article')
-    let title = document.createElement('h3')
-    let content = document.createElement('p')
-    let btnDel = document.createElement('button')
+    let newArticle = $C('article')
+    let title = $C('h3')
+    let content = $C('p')
+    let btnDel = $C('button')
 
-    let modal = document.createElement('div')
-    let modalDialog = document.createElement('div')
-    let modalContent = document.createElement('div')
+    let modal = $C('div')
+    let modalDialog = $C('div')
+    let modalContent = $C('div')
 
-    let modalHeader = document.createElement('div')
-    let btnClose = document.createElement('button')
-    let modalTitle = document.createElement('h5')
+    let modalHeader = $C('div')
+    let btnClose = $C('button')
+    let modalTitle = $C('h5')
 
-    let modalText = document.createElement('p')
+    let modalText = $C('p')
 
-    let btnEdit = document.createElement('button')
+    let btnEdit = $C('button')
     
     title.innerText = NOTE_TITLE.value;
     content.innerText = NOTE_CONTENT.value;
@@ -67,13 +72,15 @@ function creaNota() {
 
 //  EVENTOS
 //  Crea la nota, alerta si el contenido de la nota es nulo y genera un título si no se le ha dado ninguno
-BTN_OK.addEventListener('click', () => {
+FORM.addEventListener('submit', (e) => {
+  e.preventDefault()
 
   if(NOTE_CONTENT.value !== '' && NOTE_TITLE.value !== ''){
     creaNota();
   }
   else if(NOTE_CONTENT.value == ''){
     alert('Debe rellenar la nota');
+    NOTE_CONTENT.focus()
   }
   else if(NOTE_TITLE.value == ''){
     let sectionInt = document.querySelectorAll('article');
@@ -118,20 +125,21 @@ window.addEventListener('click', (event) => {
     let prevSib = btnEditar.previousSibling;
 
     if (btnEditar.innerText === 'Editar'){
-      let editText = document.createElement('textarea');
+      let editText = $C('textarea');
       
       btnEditar.innerText = 'Aceptar';
       editText.className = 'textEdit';
       editText.value = prevSib.innerText;
       prevSib.style.display = 'none';
       btnEditar.parentNode.insertBefore(editText, btnEditar);
+      editText.focus()
     } 
     else {
-      let editText = prevSib;
-      let textGB = prevSib.previousSibling;
-      let modTit = modalCont.firstElementChild.nextElementSibling.innerText;
-      let ogNote = document.getElementById(modTit);
-      let ogContent = ogNote.getElementsByTagName('p')[0];
+      let editText = prevSib; // Textarea 👌
+      let textGB = prevSib.previousSibling; // El p oculto 👌
+      let modTit = modalCont.firstElementChild.firstElementChild.innerText; // Contenido del títlo del modal
+      let ogNote = document.getElementById(modTit); // nota original
+      let ogContent = ogNote.querySelector('p');
 
       btnEditar.innerText = 'Editar';
       textGB.innerText = editText.value;
@@ -144,5 +152,5 @@ window.addEventListener('click', (event) => {
   }
 }
 
-//  Estado actual => hacer que funcione el editar texto (l. 129)
+//  ✅ Estado actual => hacer que funcione el editar texto (l. 129)
 //  Falta => estilar las notas creadas, añadir espacio al modal, darle un poco de estilo en general a la página
