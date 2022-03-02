@@ -43,7 +43,7 @@ export default class ToDoJS {
       divNuevoItem.className = 'btn-container';
       spanNuevoItem.textContent = NEW_ITEM.value;
       spanNuevoItem.className = 'text-xl';
-      nuevoItemValue.className = 'list-do-item';
+      nuevoItemValue.className = 'flex flex-grow justify-between bg-white mb-2 py-1 px-3 rounded shadow-md';
 
       btnItem(divNuevoItem);
 
