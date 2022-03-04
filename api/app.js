@@ -5,7 +5,7 @@ const path = require("path")
 app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")))
 
 app.get("/*", (req, res) => {
-  res.sendFile("../frontend/index.html")
+  res.sendFile(path.resolve("./", "frontend", "index.html"))
 })
 
 module.exports = app
