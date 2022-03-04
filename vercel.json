@@ -7,10 +7,10 @@
     }
   ],
   "trailingSlash": false,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "./frontend/index.html"
+      "source": "/(.*)",
+      "destination": "./frontend/index.html"
     }
   ]
 }
