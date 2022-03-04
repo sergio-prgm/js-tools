@@ -9,12 +9,8 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/ToDo",
-      "destination": "/ToDo"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "./"
     }
   ]
 }
